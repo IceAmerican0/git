@@ -3,10 +3,11 @@ package com.javalec.login;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.javalec.base.MainMenu;
-
+import com.javalec.function.LoginAction;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,6 +21,10 @@ public class Login {
 	private JButton btnFindid;
 	private JButton btnFindpw;
 	private JButton btnNewuser;
+	
+	private final String url_mysql = "jdbc:mysql://127.0.0.1/useraddress?serverTimezone=UTC&characterEncoding=utf8&useSSL=FALSE";
+    private final String id_mysql = "root";
+    private final String pw_mysql = "qwer1234";
 
 	/**
 	 * Launch the application.
@@ -81,10 +86,8 @@ public class Login {
 			btnLogin = new JButton("로그인");
 			btnLogin.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					MainMenu main=new MainMenu();
-					frame.dispose();
-					main.main(null);
-				}
+					Login();
+				}				
 			});
 			btnLogin.setBounds(245, 65, 104, 64);
 		}
@@ -118,4 +121,28 @@ public class Login {
 		}
 		return btnNewuser;
 	}
+	
+	
+	
+	
+	private void Login() {
+		String id=tfId.getText().trim();
+		String pw=tfId.getText().trim();
+		
+		LoginAction loginAction=new LoginAction(id,pw);
+		int msg=loginAction.Login();
+		
+		if(msg==1) {
+			MainMenu main=new MainMenu();
+			frame.dispose();
+			main.main(null);
+		}
+		else if(msg==2){
+			JOptionPane.showMessageDialog(null, "아이디가 틀립니다!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+		}else {
+			JOptionPane.showMessageDialog(null, "비밀번호가 틀립니다!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	
 }
