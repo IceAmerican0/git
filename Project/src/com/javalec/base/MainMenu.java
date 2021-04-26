@@ -17,7 +17,6 @@ import javax.swing.JLabel;
 public class MainMenu {
 
 	private JFrame frame;
-	private JTextField textField;
 	private JButton btnLogout;
 
 	/**
@@ -49,20 +48,10 @@ public class MainMenu {
 	public void initialize() {
 		frame = new JFrame();
 		frame.setTitle("메인");
-		frame.setBounds(100, 100, 488, 600);
 		frame.setBounds(100, 100, 581, 623);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		frame.getContentPane().add(getTextField());
 		frame.getContentPane().add(getBtnLogout());
-	}
-	private JTextField getTextField() {
-		if (textField == null) {
-			textField = new JTextField();
-			textField.setBounds(20, 48, 103, 26);
-			textField.setColumns(10);
-		}
-		return textField;
 		
 		JLabel userName = new JLabel("user");
 		userName.setBounds(39, 53, 61, 16);
@@ -78,7 +67,6 @@ public class MainMenu {
 					login.main(null);
 				}
 			});
-			btnLogout.setBounds(124, 48, 88, 29);
 			btnLogout.setBounds(97, 48, 88, 29);
 		}
 		return btnLogout;
