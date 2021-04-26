@@ -16,8 +16,8 @@ import javax.swing.JLabel;
 
 public class MainMenu {
 
-	private JFrame frame;
-	private JButton btnLogout;
+	public JFrame frame;
+	public JButton btnLogout;
 
 	/**
 	 * Launch the application.
