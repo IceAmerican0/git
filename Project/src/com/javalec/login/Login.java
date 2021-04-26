@@ -126,8 +126,8 @@ public class Login {
 	
 	
 	private void Login() {
-		String id=tfId.getText().trim();
-		String pw=tfId.getText().trim();
+		String id=tfId.getText().trim().toString();
+		String pw=tfId.getText().trim().toString();
 		
 		LoginAction loginAction=new LoginAction(id,pw);
 		int msg=loginAction.Login();
@@ -137,11 +137,9 @@ public class Login {
 			frame.dispose();
 			main.main(null);
 		}
-		else if(msg==2){
-			JOptionPane.showMessageDialog(null, "아이디가 틀립니다!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
-		}else {
-			JOptionPane.showMessageDialog(null, "비밀번호가 틀립니다!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
-		}
+		if(msg==2)	JOptionPane.showMessageDialog(null, "비밀번호가 틀립니다!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+		if(msg==3)	JOptionPane.showMessageDialog(null, "아이디가 틀립니다!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+		
 	}
 	
 	

@@ -28,7 +28,8 @@ public class LoginAction {
 	}
 	
 	public int Login() {
-		String sql="select userpw from user where userid=";
+		String sql="select userpw from user";
+		String userid="";
 		String userpw="";
 		
 		try{
@@ -36,10 +37,8 @@ public class LoginAction {
 	          Connection conn_mysql = DriverManager.getConnection(url_mysql,id_mysql,pw_mysql);
 	          Statement stmt_mysql = conn_mysql.createStatement();
 	
-	          ResultSet rs = stmt_mysql.executeQuery(sql+id);
-	
-	          	          
-	          while(rs.next()){
+	          ResultSet rs = stmt_mysql.executeQuery(sql);
+	          while(rs.next()) {
 	        	  userpw=rs.getString(1);
 	          }
 	          conn_mysql.close();
@@ -47,10 +46,9 @@ public class LoginAction {
 	      catch (Exception e){
 	          e.printStackTrace();
 	      }
-		JOptionPane.showMessageDialog(null, userpw);
-		return 0;
-//		if(userpw.equals(pw)) return 1;
-//		else if(userpw.equals("")) return 2;
-//		else return 3;
+		
+		if(userpw.equals(pw)) return 1;
+		if(!userpw.equals(pw)) return 2;
+		else return 3;
 	}
 }

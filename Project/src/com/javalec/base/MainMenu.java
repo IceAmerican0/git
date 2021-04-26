@@ -62,7 +62,7 @@ public class MainMenu {
 			btnLogout = new JButton("Logout");
 			btnLogout.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					Login();
+					Logout();
 				}
 			});
 			btnLogout.setBounds(97, 48, 88, 29);
@@ -70,7 +70,7 @@ public class MainMenu {
 		return btnLogout;
 	}
 	
-	private void Login() {
+	private void Logout() {
 		
 	}
 }
