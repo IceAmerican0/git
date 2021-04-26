@@ -12,6 +12,7 @@ import com.javalec.login.Login;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class MainMenu {
 
@@ -49,6 +50,7 @@ public class MainMenu {
 		frame = new JFrame();
 		frame.setTitle("메인");
 		frame.setBounds(100, 100, 488, 600);
+		frame.setBounds(100, 100, 581, 623);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getTextField());
@@ -61,6 +63,10 @@ public class MainMenu {
 			textField.setColumns(10);
 		}
 		return textField;
+		
+		JLabel userName = new JLabel("user");
+		userName.setBounds(39, 53, 61, 16);
+		frame.getContentPane().add(userName);
 	}
 	private JButton getBtnLogout() {
 		if (btnLogout == null) {
@@ -73,6 +79,7 @@ public class MainMenu {
 				}
 			});
 			btnLogout.setBounds(124, 48, 88, 29);
+			btnLogout.setBounds(97, 48, 88, 29);
 		}
 		return btnLogout;
 	}
