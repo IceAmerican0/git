@@ -4,17 +4,27 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import javax.swing.border.EmptyBorder;
+
+import java.awt.BorderLayout;
+import java.awt.TextArea;
+import java.awt.Button;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JTextPane;
+import javax.swing.JButton;
+import java.awt.Panel;
+import javax.swing.JTextArea;
 
 public class WriteReply {
 
 	private JFrame frame;
 	private JButton btnOK;
 	private JButton btnCancel;
-	private JTextPane textPane;
+	private JPanel panel;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -44,53 +54,59 @@ public class WriteReply {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setTitle("댓글 작성");
-		frame.setBounds(100, 100, 450, 155);
+		frame.setBounds(100, 100, 450, 145);
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getBtnOK());
 		frame.getContentPane().add(getBtnCancel());
-		frame.getContentPane().add(getTextPane());
+		frame.getContentPane().add(getPanel());
+		
 	}
-
 	private JButton getBtnOK() {
 		if (btnOK == null) {
-			btnOK = new JButton("작성");
+			btnOK = new JButton("OK");
 			btnOK.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					//-----------
 					check();
 				}
 			});
-			btnOK.setBounds(140, 92, 73, 29);
+			btnOK.setBounds(106, 88, 117, 29);
 		}
 		return btnOK;
 	}
 	private JButton getBtnCancel() {
 		if (btnCancel == null) {
-			btnCancel = new JButton("취소");
+			btnCancel = new JButton("Cancel");
 			btnCancel.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-				frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				}
 			});
-			btnCancel.setBounds(215, 92, 73, 29);
+			btnCancel.setBounds(224, 88, 117, 29);
 		}
 		return btnCancel;
 	}
-	private JTextPane getTextPane() {
-		if (textPane == null) {
-			textPane = new JTextPane();
-			textPane.setBounds(17, 6, 412, 74);
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setBounds(6, 6, 438, 73);
+			panel.add(getTextArea());
+			
 		}
-		return textPane;
+		return panel;
+	}
+	private JTextArea getTextArea() {
+		if (textArea == null) {
+			textArea = new JTextArea(20,30);
+			textArea.setLineWrap(true);
+		}
+		return textArea;
 	}
 	private void check() {
-		if (textPane.getText().isBlank()) {
+		if (textArea.getText().isBlank()) {
 			JOptionPane.showMessageDialog(null, "내용을 입력해주세요!");
 		}
-		if (textPane.getText().length()>=140) {
-			JOptionPane.showMessageDialog(null, "140자 이하로 작성해주세요!");
+		if (textArea.getText().length()>=140) {
 		}
 		else {
 			//database input

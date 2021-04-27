@@ -12,6 +12,8 @@ import javax.swing.JScrollBar;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
 
 public class WritePost {
 
@@ -22,9 +24,10 @@ public class WritePost {
 	private JLabel lblClothes;
 	private JLabel lblTitle_2;
 	private JButton btnPull;
-	private JTextPane textPane;
 	private JButton btnOK;
 	private JButton btnCancel;
+	private JPanel panel;
+	private JTextArea textArea;
 
 	/**
 	 * Launch the application.
@@ -63,9 +66,9 @@ public class WritePost {
 		frame.getContentPane().add(getLblClothes());
 		frame.getContentPane().add(getLblTitle_2());
 		frame.getContentPane().add(getBtnPull());
-		frame.getContentPane().add(getTextPane());
 		frame.getContentPane().add(getBtnOK());
 		frame.getContentPane().add(getBtnCancel());
+		frame.getContentPane().add(getPanel());
 	}
 
 	private JLabel getLblImage() {
@@ -118,13 +121,6 @@ public class WritePost {
 		}
 		return btnPull;
 	}
-	private JTextPane getTextPane() {
-		if (textPane == null) {
-			textPane = new JTextPane();
-			textPane.setBounds(34, 366, 340, 50);
-		}
-		return textPane;
-	}
 	private JButton getBtnOK() {
 		if (btnOK == null) {
 			btnOK = new JButton("작성하기");
@@ -138,5 +134,20 @@ public class WritePost {
 			btnCancel.setBounds(199, 440, 83, 29);
 		}
 		return btnCancel;
+	}
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setBounds(34, 366, 340, 62);
+			panel.add(getTextArea());
+		}
+		return panel;
+	}
+	private JTextArea getTextArea() {
+		if (textArea == null) {
+			textArea = new JTextArea(20,30);
+			textArea.setLineWrap(true);
+		}
+		return textArea;
 	}
 }
