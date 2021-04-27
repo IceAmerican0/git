@@ -11,6 +11,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class UserRegister {
 
@@ -19,13 +20,18 @@ public class UserRegister {
 	private JButton btnTestid;
 	private JTextField tfEmail;
 	private JButton btnTestid_1;
-	private JTextField tfPw1;
-	private JTextField tfPw2;
 	private JLabel lbCheckpw;
 	private JTextField tfName;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
 	private JLabel lblNewLabel_1;
+	private JLabel lblNewLabel;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_2_1;
+	private JLabel lblNewLabel_2_1_1;
+	private JLabel lblNewLabel_3;
+	private JPasswordField Password1;
+	private JPasswordField Password2;
 
 	/**
 	 * Launch the application.
@@ -63,19 +69,26 @@ public class UserRegister {
 		frame.getContentPane().add(getBtnTestid());
 		frame.getContentPane().add(getTextField_1());
 		frame.getContentPane().add(getBtnTestid_1());
-		frame.getContentPane().add(getTextField_1_1());
-		frame.getContentPane().add(getTfPw2());
 		frame.getContentPane().add(getLbCheckpw());
 		frame.getContentPane().add(getTfName());
 		frame.getContentPane().add(getBtnNewButton());
 		frame.getContentPane().add(getBtnNewButton_1());
 		frame.getContentPane().add(getLblNewLabel_1());
+		frame.getContentPane().add(getLblNewLabel());
+		frame.getContentPane().add(getLblNewLabel_2());
+		frame.getContentPane().add(getLblNewLabel_2_1());
+		frame.getContentPane().add(getLblNewLabel_2_1_1());
+		frame.getContentPane().add(getLblNewLabel_3());
+		frame.getContentPane().add(getPassword1());
+		frame.getContentPane().add(getPassword2());
+		
+		
 	}
 
 	private JTextField getTfId() {
 		if (tfId == null) {
 			tfId = new JTextField();
-			tfId.setText("아이디를 입력해주세요");
+			tfId.setToolTipText("아이디를 입력해주세요!");
 			tfId.setBounds(85, 103, 220, 26);
 			tfId.setColumns(10);
 		}
@@ -91,7 +104,7 @@ public class UserRegister {
 	private JTextField getTextField_1() {
 		if (tfEmail == null) {
 			tfEmail = new JTextField();
-			tfEmail.setText("이메일 주소를 입력해주세요");
+			tfEmail.setToolTipText("이메일 주소를 입력해주세요!");
 			tfEmail.setColumns(10);
 			tfEmail.setBounds(85, 141, 220, 26);
 		}
@@ -104,24 +117,6 @@ public class UserRegister {
 		}
 		return btnTestid_1;
 	}
-	private JTextField getTextField_1_1() {
-		if (tfPw1 == null) {
-			tfPw1 = new JTextField();
-			tfPw1.setText("비밀번호를 입력해주세요");
-			tfPw1.setColumns(10);
-			tfPw1.setBounds(85, 179, 349, 26);
-		}
-		return tfPw1;
-	}
-	private JTextField getTfPw2() {
-		if (tfPw2 == null) {
-			tfPw2 = new JTextField();
-			tfPw2.setText("비밀번호를 한번 더 입력해주세요");
-			tfPw2.setColumns(10);
-			tfPw2.setBounds(85, 217, 349, 26);
-		}
-		return tfPw2;
-	}
 	private JLabel getLbCheckpw() {
 		if (lbCheckpw == null) {
 			lbCheckpw = new JLabel("비밀번호가 일치하지 않습니다!");
@@ -132,7 +127,7 @@ public class UserRegister {
 	private JTextField getTfName() {
 		if (tfName == null) {
 			tfName = new JTextField();
-			tfName.setText("이름을 입력해 주세요");
+			tfName.setToolTipText("이름을 입력해주세요!");
 			tfName.setBounds(85, 272, 173, 26);
 			tfName.setColumns(10);
 		}
@@ -141,6 +136,11 @@ public class UserRegister {
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("회원가입");
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					RegisterMethod();
+				}
+			});
 			btnNewButton.setBounds(111, 323, 117, 29);
 		}
 		return btnNewButton;
@@ -150,9 +150,8 @@ public class UserRegister {
 			btnNewButton_1 = new JButton("가입취소");
 			btnNewButton_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					MainMenu main=new MainMenu();
 					frame.dispose();
-					main.main(null);
+					Login.main(null);
 				}
 			});
 			btnNewButton_1.setBounds(254, 323, 117, 29);
@@ -165,5 +164,67 @@ public class UserRegister {
 			lblNewLabel_1.setBounds(216, 49, 89, 42);
 		}
 		return lblNewLabel_1;
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("아이디");
+			lblNewLabel.setBounds(16, 108, 57, 15);
+		}
+		return lblNewLabel;
+	}
+	private JLabel getLblNewLabel_2() {
+		if (lblNewLabel_2 == null) {
+			lblNewLabel_2 = new JLabel("이메일");
+			lblNewLabel_2.setBounds(16, 146, 57, 15);
+		}
+		return lblNewLabel_2;
+	}
+	private JLabel getLblNewLabel_2_1() {
+		if (lblNewLabel_2_1 == null) {
+			lblNewLabel_2_1 = new JLabel("비밀번호");
+			lblNewLabel_2_1.setBounds(16, 184, 57, 15);
+		}
+		return lblNewLabel_2_1;
+	}
+	private JLabel getLblNewLabel_2_1_1() {
+		if (lblNewLabel_2_1_1 == null) {
+			lblNewLabel_2_1_1 = new JLabel("비밀번호 확인");
+			lblNewLabel_2_1_1.setBounds(5, 222, 76, 15);
+		}
+		return lblNewLabel_2_1_1;
+	}
+	private JLabel getLblNewLabel_3() {
+		if (lblNewLabel_3 == null) {
+			lblNewLabel_3 = new JLabel("이름");
+			lblNewLabel_3.setBounds(24, 277, 57, 15);
+		}
+		return lblNewLabel_3;
+	}
+	
+	
+	private JPasswordField getPassword1() {
+		if (Password1 == null) {
+			Password1 = new JPasswordField();
+			Password1.setToolTipText("비밀번호를 입력해주세요!");
+			Password1.setBounds(85, 181, 220, 21);
+		}
+		return Password1;
+	}
+	private JPasswordField getPassword2() {
+		if (Password2 == null) {
+			Password2 = new JPasswordField();
+			Password2.setToolTipText("비밀번호를 한번 더 입력해주세요!");
+			Password2.setBounds(85, 213, 220, 21);
+		}
+		return Password2;
+	}
+	
+	private void RegisterMethod() {
+		String id=tfId.getText().trim();
+		String email=tfEmail.getText().trim();
+		String pw1=new String(Password1.getPassword());
+		String pw2=new String(Password2.getPassword());
+		
+		
 	}
 }

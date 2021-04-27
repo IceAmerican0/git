@@ -71,6 +71,7 @@ public class MainMenu {
 	}
 	
 	private void Logout() {
-		
+		frame.dispose();
+		Login.main(null);
 	}
 }
