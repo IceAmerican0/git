@@ -81,7 +81,7 @@ public class UserRegister {
 		frame.getContentPane().add(getLblNewLabel_3());
 		frame.getContentPane().add(getPassword1());
 		frame.getContentPane().add(getPassword2());
-		
+		frame.setLocationRelativeTo(null);
 		
 	}
 

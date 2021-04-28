@@ -24,6 +24,7 @@ public class FindId {
 	private JTextField tfEmail;
 	private JButton btnNewButton;
 	private JLabel lblNewLabel_2;
+	private JButton btnNewButton_1;
 
 	/**
 	 * Launch the application.
@@ -62,6 +63,8 @@ public class FindId {
 		frame.getContentPane().add(getTfEmail());
 		frame.getContentPane().add(getBtnNewButton());
 		frame.getContentPane().add(getLblNewLabel_2());
+		frame.getContentPane().add(getBtnNewButton_1());
+		frame.setLocationRelativeTo(null);
 	}
 
 	private JLabel getLblNewLabel() {
@@ -107,7 +110,7 @@ public class FindId {
 					Findid();
 				}
 			});
-			btnNewButton.setBounds(158, 177, 117, 29);
+			btnNewButton.setBounds(115, 176, 117, 29);
 		}
 		return btnNewButton;
 	}
@@ -139,5 +142,18 @@ public class FindId {
 				Login.main(null);
 			}
 		}
+	}
+	private JButton getBtnNewButton_1() {
+		if (btnNewButton_1 == null) {
+			btnNewButton_1 = new JButton("취소");
+			btnNewButton_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					frame.dispose();
+					Login.main(null);
+				}
+			});
+			btnNewButton_1.setBounds(232, 176, 117, 29);
+		}
+		return btnNewButton_1;
 	}
 }

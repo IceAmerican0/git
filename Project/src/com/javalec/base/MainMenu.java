@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JTextField;
 
+import com.javalec.function.Bean;
 import com.javalec.login.Login;
 
 import javax.swing.JButton;
@@ -52,8 +53,10 @@ public class MainMenu {
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		frame.getContentPane().add(getBtnLogout());
+		frame.setLocationRelativeTo(null);
 		
 		JLabel userName = new JLabel("user");
+		userName.setText(Bean.nowId);
 		userName.setBounds(39, 53, 61, 16);
 		frame.getContentPane().add(userName);
 	}
@@ -71,6 +74,7 @@ public class MainMenu {
 	}
 	
 	private void Logout() {
+		Bean.nowId="";
 		frame.dispose();
 		Login.main(null);
 	}

@@ -7,6 +7,7 @@ import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 
+import com.javalec.function.Bean;
 import com.javalec.function.ShareVar;
 
 
@@ -51,9 +52,12 @@ public class LoginAction {
 	          e.printStackTrace();
 	      }
 		
-
+		
 		if(userpw.equals("")) return 0;
-		if(userpw.equals(pw)) return 1;
+		if(userpw.equals(pw)) {
+			Bean.nowId=id;
+			return 1;
+		}
 		else return 0;
 	}
 }

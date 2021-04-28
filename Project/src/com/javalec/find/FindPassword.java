@@ -68,6 +68,7 @@ public class FindPassword {
 		frame.getContentPane().add(getLblNewLabel_3());
 		frame.getContentPane().add(getTfId());
 		frame.getContentPane().add(getBtnNewButton_1());
+		frame.setLocationRelativeTo(null);
 	}
 
 	private JLabel getLblNewLabel() {

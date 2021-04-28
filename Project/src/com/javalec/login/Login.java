@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import com.javalec.base.MainMenu;
 import com.javalec.find.FindId;
 import com.javalec.find.FindPassword;
+import com.javalec.function.Bean;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -72,6 +73,7 @@ public class Login {
 		frame.getContentPane().add(getBtnNewuser());
 		frame.getContentPane().add(getPassword());
 		frame.getContentPane().add(getLblNewLabel());
+		frame.setLocationRelativeTo(null);
 	}
 	private JTextField getTfId() {
 		if (tfId == null) {
