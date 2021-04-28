@@ -7,11 +7,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import com.javalec.base.MainMenu;
+import com.javalec.find.FindId;
+import com.javalec.find.FindPassword;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class Login {
 
@@ -26,6 +31,7 @@ public class Login {
     private final String id_mysql = "root";
     private final String pw_mysql = "qwer1234";
     private JPasswordField Password;
+    private JLabel lblNewLabel;
 
 	/**
 	 * Launch the application.
@@ -65,11 +71,12 @@ public class Login {
 		frame.getContentPane().add(getBtnFindpw());
 		frame.getContentPane().add(getBtnNewuser());
 		frame.getContentPane().add(getPassword());
+		frame.getContentPane().add(getLblNewLabel());
 	}
 	private JTextField getTfId() {
 		if (tfId == null) {
 			tfId = new JTextField();
-			tfId.setBounds(88, 65, 145, 26);
+			tfId.setBounds(88, 105, 145, 26);
 			tfId.setColumns(10);
 		}
 		return tfId;
@@ -82,21 +89,33 @@ public class Login {
 					LoginMethod();
 				}				
 			});
-			btnLogin.setBounds(245, 65, 104, 64);
+			btnLogin.setBounds(245, 105, 104, 64);
 		}
 		return btnLogin;
 	}
 	private JButton getBtnFindid() {
 		if (btnFindid == null) {
 			btnFindid = new JButton("아이디찾기");
-			btnFindid.setBounds(156, 141, 92, 29);
+			btnFindid.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					frame.dispose();
+					FindId.main(null);
+				}
+			});
+			btnFindid.setBounds(156, 181, 92, 29);
 		}
 		return btnFindid;
 	}
 	private JButton getBtnFindpw() {
 		if (btnFindpw == null) {
 			btnFindpw = new JButton("비밀번호찾기");
-			btnFindpw.setBounds(255, 141, 121, 29);
+			btnFindpw.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					frame.dispose();
+					FindPassword.main(null);
+				}
+			});
+			btnFindpw.setBounds(255, 181, 121, 29);
 		}
 		return btnFindpw;
 	}
@@ -109,7 +128,7 @@ public class Login {
 					UserRegister.main(null);
 				}
 			});
-			btnNewuser.setBounds(56, 141, 88, 29);
+			btnNewuser.setBounds(56, 181, 88, 29);
 		}
 		return btnNewuser;
 	}
@@ -117,7 +136,7 @@ public class Login {
 	private JPasswordField getPassword() {
 		if (Password == null) {
 			Password = new JPasswordField();
-			Password.setBounds(88, 108, 145, 21);
+			Password.setBounds(88, 148, 145, 21);
 		}
 		return Password;
 	}
@@ -135,5 +154,14 @@ public class Login {
 			MainMenu.main(null);
 		}else JOptionPane.showMessageDialog(null, "아이디 및 비밀번호를 입력해주세요!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
 		
+	}
+	private JLabel getLblNewLabel() {
+		if (lblNewLabel == null) {
+			lblNewLabel = new JLabel("오늘 뭐 입지?");
+			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+			lblNewLabel.setBounds(98, 22, 231, 71);
+		}
+		return lblNewLabel;
 	}
 }

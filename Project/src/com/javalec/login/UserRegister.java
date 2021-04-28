@@ -9,6 +9,8 @@ import com.javalec.base.MainMenu;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
@@ -20,7 +22,6 @@ public class UserRegister {
 	private JButton btnTestid;
 	private JTextField tfEmail;
 	private JButton btnTestid_1;
-	private JLabel lbCheckpw;
 	private JTextField tfName;
 	private JButton btnNewButton;
 	private JButton btnNewButton_1;
@@ -69,7 +70,6 @@ public class UserRegister {
 		frame.getContentPane().add(getBtnTestid());
 		frame.getContentPane().add(getTextField_1());
 		frame.getContentPane().add(getBtnTestid_1());
-		frame.getContentPane().add(getLbCheckpw());
 		frame.getContentPane().add(getTfName());
 		frame.getContentPane().add(getBtnNewButton());
 		frame.getContentPane().add(getBtnNewButton_1());
@@ -97,6 +97,11 @@ public class UserRegister {
 	private JButton getBtnTestid() {
 		if (btnTestid == null) {
 			btnTestid = new JButton("중복확인");
+			btnTestid.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					IdCheck();
+				}
+			});
 			btnTestid.setBounds(317, 103, 117, 29);
 		}
 		return btnTestid;
@@ -113,22 +118,20 @@ public class UserRegister {
 	private JButton getBtnTestid_1() {
 		if (btnTestid_1 == null) {
 			btnTestid_1 = new JButton("중복확인");
+			btnTestid_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					EmailCheck();
+				}
+			});
 			btnTestid_1.setBounds(317, 141, 117, 29);
 		}
 		return btnTestid_1;
-	}
-	private JLabel getLbCheckpw() {
-		if (lbCheckpw == null) {
-			lbCheckpw = new JLabel("비밀번호가 일치하지 않습니다!");
-			lbCheckpw.setBounds(95, 244, 276, 16);
-		}
-		return lbCheckpw;
 	}
 	private JTextField getTfName() {
 		if (tfName == null) {
 			tfName = new JTextField();
 			tfName.setToolTipText("이름을 입력해주세요!");
-			tfName.setBounds(85, 272, 173, 26);
+			tfName.setBounds(87, 249, 173, 26);
 			tfName.setColumns(10);
 		}
 		return tfName;
@@ -141,7 +144,7 @@ public class UserRegister {
 					RegisterMethod();
 				}
 			});
-			btnNewButton.setBounds(111, 323, 117, 29);
+			btnNewButton.setBounds(113, 300, 117, 29);
 		}
 		return btnNewButton;
 	}
@@ -154,7 +157,7 @@ public class UserRegister {
 					Login.main(null);
 				}
 			});
-			btnNewButton_1.setBounds(254, 323, 117, 29);
+			btnNewButton_1.setBounds(256, 300, 117, 29);
 		}
 		return btnNewButton_1;
 	}
@@ -196,7 +199,7 @@ public class UserRegister {
 	private JLabel getLblNewLabel_3() {
 		if (lblNewLabel_3 == null) {
 			lblNewLabel_3 = new JLabel("이름");
-			lblNewLabel_3.setBounds(24, 277, 57, 15);
+			lblNewLabel_3.setBounds(26, 254, 57, 15);
 		}
 		return lblNewLabel_3;
 	}
@@ -224,7 +227,100 @@ public class UserRegister {
 		String email=tfEmail.getText().trim();
 		String pw1=new String(Password1.getPassword());
 		String pw2=new String(Password2.getPassword());
+		String name=tfName.getText().trim();
 		
+		int Fieldchk=FieldCheck();
+		if (Fieldchk==1) {
+			int Idchk=IdCheck();
+			int Emailchk=EmailCheck();
+			int Pwchk=PasswordCheck();
+			
+			if(Idchk==1&&Emailchk==1&&Pwchk==1) {
+				RegisterAction RegisterAction=new RegisterAction(id, pw1, name,email);
+				RegisterAction.Register();
+				frame.dispose();
+				Login.main(null);
+			}
+		}
+			
 		
+	}
+	
+	private int PasswordCheck() {
+		String pw1=new String(Password1.getPassword());
+		String pw2=new String(Password2.getPassword());
+		
+		if(!(pw1.equals(""))&&pw1.equals(pw2)) return 1;
+		else {
+			JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다!");
+			return 0;
+		}
+		
+	}
+	
+	private int FieldCheck() {
+		String id=tfId.getText().trim();
+		String email=tfEmail.getText().trim();
+		String pw1=new String(Password1.getPassword());
+		String pw2=new String(Password2.getPassword());
+		String name=tfName.getText().trim();
+		
+		if(id.equals("")) {
+			JOptionPane.showMessageDialog(null, "아이디를 입력해주세요!");
+			return 0;
+		}else if(email.equals("")) {
+			JOptionPane.showMessageDialog(null, "이메일를 입력해주세요!");
+			return 0;
+		}else if(pw1.equals("")) {
+			JOptionPane.showMessageDialog(null, "비밀번호를 입력해주세요!");
+			return 0;
+		}else if(pw2.equals("")) {
+			JOptionPane.showMessageDialog(null, "비밀번호를 한번 더 입력해주세요!");
+			return 0;
+		}else if(name.equals("")) {
+			JOptionPane.showMessageDialog(null, "이름을 입력해주세요!");
+			return 0;
+		}else if(!(pw1.equals(pw2))) {
+			JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다!");
+			return 0;
+		}else return 1;
+	}
+	
+	private int IdCheck() {
+		String id=tfId.getText().trim();
+		if(id.equals("")) {
+			JOptionPane.showMessageDialog(null, "아이디를 입력해주세요!");
+			return 0;
+		}else {
+			RegisterAction RegisterAction=new RegisterAction();
+			int chk=RegisterAction.Idchk(id);
+			if(chk==1) {
+				JOptionPane.showMessageDialog(null, "이미 가입된 아이디입니다!");
+				return 0;
+			}
+			if(chk==0) {
+				JOptionPane.showMessageDialog(null, "사용가능한 아이디입니다!");
+				return 1;
+			}else return 0;
+		}
+	}
+	
+	private int EmailCheck() {
+		String email=tfEmail.getText().trim();
+		if(email.equals("")) {
+			JOptionPane.showMessageDialog(null, "이메일을 입력해주세요!");
+			return 0;
+		}else {
+			RegisterAction RegisterAction=new RegisterAction();
+			int chk=RegisterAction.Emailchk(email);
+			if(chk==1) {
+				JOptionPane.showMessageDialog(null, "이미 가입된 이메일입니다!");
+				return 0;
+			}
+			if(chk==0) {
+				JOptionPane.showMessageDialog(null, "사용가능한 이메일입니다!");
+				return 1;
+			}else return 0;
+		}
 	}
 }

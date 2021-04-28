@@ -1,39 +1,37 @@
-package com.javalec.login;
+package com.javalec.find;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import javax.swing.JOptionPane;
-
 import com.javalec.function.ShareVar;
 
-
-public class LoginAction {
+public class FindIdAction {
 	private final String url_mysql=ShareVar.url_mysql;	
 	private final String id_mysql=ShareVar.id_mysql;	
 	private final String pw_mysql=ShareVar.pw_mysql;
 	
-	String id;
-	String pw;
 	String name;
+	String email;
 	
-	public LoginAction() {
+	public FindIdAction() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public LoginAction(String id, String pw) {
+	public FindIdAction(String name, String email) {
 		super();
-		this.id = id;
-		this.pw = pw;
+		this.name = name;
+		this.email = email;
 	}
 	
-	public int Login() {
-		String sql1="select userpw,username from user where";
-		String sql2=" user.userid='"+id+"'";
+	public String IdfindAction() {
+		
+		
+		String sql1="select userid from user where";
+		String sql2=" user.username='"+name+"' and user.useremail='"+email+"'";
 		String userid="";
-		String userpw="";
+		
 		
 		try{
 	          Class.forName("com.mysql.cj.jdbc.Driver");
@@ -42,18 +40,15 @@ public class LoginAction {
 	
 	          ResultSet rs = stmt_mysql.executeQuery(sql1+sql2);
 	          while(rs.next()) {
-	        	  userpw=rs.getString(1);
-	        	  this.name=rs.getString(2);
+	        	  userid=rs.getString(1);
 	          }
 	          conn_mysql.close();
 	      }
 	      catch (Exception e){
 	          e.printStackTrace();
 	      }
-		
-
-		if(userpw.equals("")) return 0;
-		if(userpw.equals(pw)) return 1;
-		else return 0;
+		return userid;
 	}
+	
+
 }
