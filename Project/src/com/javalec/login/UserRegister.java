@@ -233,9 +233,8 @@ public class UserRegister {
 		if (Fieldchk==1) {
 			int Idchk=IdCheck();
 			int Emailchk=EmailCheck();
-			int Pwchk=PasswordCheck();
 			
-			if(Idchk==1&&Emailchk==1&&Pwchk==1) {
+			if(Idchk==1&&Emailchk==1) {
 				RegisterAction RegisterAction=new RegisterAction(id, pw1, name,email);
 				RegisterAction.Register();
 				frame.dispose();
@@ -243,18 +242,6 @@ public class UserRegister {
 			}
 		}
 			
-		
-	}
-	
-	private int PasswordCheck() {
-		String pw1=new String(Password1.getPassword());
-		String pw2=new String(Password2.getPassword());
-		
-		if(!(pw1.equals(""))&&pw1.equals(pw2)) return 1;
-		else {
-			JOptionPane.showMessageDialog(null, "비밀번호가 일치하지 않습니다!");
-			return 0;
-		}
 		
 	}
 	
