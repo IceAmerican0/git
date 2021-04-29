@@ -164,14 +164,26 @@ public class FindPassword {
 		String email=tfEmail.getText().trim();
 		String id=tfId.getText().trim();
 		
-		if(id.equals("")||name.equals("")||email.equals(""))  {
-			JOptionPane.showMessageDialog(null,"이름 및 아이디 및 이메일을 입력해주세요!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+		if(id.equals(""))  {
+			JOptionPane.showMessageDialog(null,"아이디를 입력해주세요!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+			tfId.grabFocus();
+		}else if(name.equals(""))  {
+			JOptionPane.showMessageDialog(null,"이름을 입력해주세요!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+			tfName.grabFocus();
+		}else if(email.equals("")) {
+			JOptionPane.showMessageDialog(null,"이메일을 입력해주세요!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+			tfEmail.grabFocus();
 		}
 		else{
 			FindPasswordAction findAction=new FindPasswordAction(id,name,email);
 			String pw=findAction.IdfindAction();
 			
-			if(pw.equals("")) JOptionPane.showMessageDialog(null,name+" 님의 정보가 존재하지 않습니다!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+			if(pw.equals("")) {
+				JOptionPane.showMessageDialog(null,name+" 님의 정보가 존재하지 않습니다!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+				tfName.setText("");
+				tfEmail.setText("");
+				tfId.setText("");
+			}
 			else {
 				JOptionPane.showMessageDialog(null, name+" 님의 비밀번호\n"+pw);
 				frame.dispose();

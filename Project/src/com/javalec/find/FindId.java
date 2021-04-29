@@ -128,14 +128,21 @@ public class FindId {
 		String name=tfName.getText().trim();
 		String email=tfEmail.getText().trim();
 		
-		if(name.equals("")||email.equals(""))  {
-			JOptionPane.showMessageDialog(null,"아이디 및 이메일을 입력해주세요!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
-		}
-		else{
+		if(name.equals(""))  {
+			JOptionPane.showMessageDialog(null,"이름을 입력해주세요!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+			tfName.grabFocus();
+		}else if(email.equals("")) {
+			JOptionPane.showMessageDialog(null,"이메일을 입력해주세요!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+			tfEmail.grabFocus();
+		}else{
 			FindIdAction findAction=new FindIdAction(name,email);
 			String id=findAction.IdfindAction();
 			
-			if(id.equals("")) JOptionPane.showMessageDialog(null,name+" 님의 정보가 존재하지 않습니다!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+			if(id.equals("")) {
+				JOptionPane.showMessageDialog(null,name+" 님의 정보가 존재하지 않습니다!","ErrorMessage",JOptionPane.ERROR_MESSAGE);
+				tfName.setText("");
+				tfEmail.setText("");
+			}
 			else {
 				JOptionPane.showMessageDialog(null, name+" 님의 아이디\n"+id);
 				frame.dispose();

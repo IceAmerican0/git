@@ -55,7 +55,7 @@ public class LoginAction {
 		
 		if(userpw.equals("")) return 0;
 		if(userpw.equals(pw)) {
-			Bean.nowId=id;
+			ShareVar.nowId=id;
 			return 1;
 		}
 		else return 0;

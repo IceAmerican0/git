@@ -1,7 +1,6 @@
 package com.javalec.function;
 
 public class Bean {
-	public static String nowId="";
 	
 	String id;
 	String pw;
